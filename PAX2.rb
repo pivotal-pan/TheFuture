@@ -2,8 +2,8 @@
 require 'sinatra'
 require 'json'
 
+
 jobs = {}
-next_job = 0
 
 
 def update_job(job)
@@ -27,13 +27,6 @@ get '/' do
 END
 end
 
-get '/chart' do
-  # start job
-  next_job += 1
-  id = next_job
-  jobs[id] = { :id => id, :progress => 0, :data => [] }
-  "{ jobID: #{id} }"
-end
 
 get '/job/:id' do
   # increment job progress
@@ -41,8 +34,9 @@ get '/job/:id' do
   job = jobs[id]
   if job
     update_job job
-    job.to_json
   else
-    [ 404, 'pants']
+    job = { :id => id, :progress => 0, :data => [] }
+    jobs[id] = job
   end
+  job.to_json
 end
