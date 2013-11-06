@@ -3,14 +3,14 @@ require 'sinatra'
 require 'json'
 
 
-jobs = {}
+charts = {}
 
 
-def update_job(job)
-  if job[:progress] < 1
-    job[:progress] += 0.25
+def update_chart(chart)
+  if chart[:progress] < 1
+    chart[:progress] += 0.25
     prng = Random.new()
-    job[:data] += [prng.rand(10), prng.rand(10), prng.rand(10)]
+    chart[:data] += [prng.rand(10), prng.rand(10), prng.rand(10)]
   end
 end
 
@@ -28,15 +28,15 @@ END
 end
 
 
-get '/job/:id' do
-  # increment job progress
-  id = params[:id].to_i
-  job = jobs[id]
-  if job
-    update_job job
+get '/chart/:id' do
+  # increment chart progress
+  id = params[:id]
+  chart = charts[id]
+  if chart
+    update_chart chart
   else
-    job = { :id => id, :progress => 0, :data => [] }
-    jobs[id] = job
+    chart = { :id => id, :progress => 0, :data => [] }
+    charts[id] = chart
   end
-  job.to_json
+  chart.to_json
 end
