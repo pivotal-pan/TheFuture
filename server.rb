@@ -16,15 +16,7 @@ end
 
 
 get '/' do
-  <<END
-<html>
-  <head>
-    <title>Pivotal Analytics II</title>
-  </head>
-  <body style='background: url("http://la.indymedia.org/uploads/2013/09/dolphin-wall-papers.jpg") center center no-repeat'>
-  </body>
-</html>
-END
+  erb :index
 end
 
 
