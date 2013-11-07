@@ -20,6 +20,11 @@ get '/' do
 end
 
 
+get '/ember*' do
+  erb :ember
+end
+
+
 get '/chart/:id' do
   # increment chart progress
   id = params[:id]
