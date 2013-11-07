@@ -11,28 +11,31 @@
   <script type="text/x-handlebars">
     <h2>Welcome to Pivotal Analytix Dieu</h2>
     <p><em>This time it's personal</em></p>
+    {{#link-to 'charts'}}Charts{{/link-to}}
 	{{outlet}}
   </script>
 
   <script type="text/x-handlebars" data-template-name="charts">
-  <h1>Charts</h1>
-  <ul>
-  {{#each item in model}}
-    <li>{{#link-to 'chart' item}}Chart {{item.id}}{{/link-to}}</li>
-  {{/each}}
-  </ul>
-  New Chart: {{input value=chartId}}
-  <button {{action createChart chartId}}>Create Chart</button>
+	  <h1>Charts</h1>
+	  <ul>
+	  {{#each item in model}}
+	    <li>{{#link-to 'chart' item}}Chart {{item.id}}{{/link-to}}</li>
+	  {{/each}}
+	  </ul>
+	  New Chart: {{input value=chartId}}
+	  <button {{action createChart chartId}}>Create Chart</button>
   </script>
 
   <script type="text/x-handlebars" data-template-name="chart">
-  {{#link-to 'charts'}}Back to Charts{{/link-to}}
-  <h1>Chart {{model.id}}</h1>
+	  <h1>Chart {{model.id}}</h1>
+	  <p>Progress: {{model.progress}}</p>
+	  <p>Data: {{model.data}}</p>
   </script>
 
   <script src="/ember/js/libs/jquery-1.9.1.js"></script>
   <script src="/ember/js/libs/handlebars-1.0.0.js"></script>
   <script src="/ember/js/libs/ember-1.1.2.js"></script>
+  <script src="/ember/js/libs/ember-data-1.0.0-beta3.js"></script>
   <script src="/ember/js/app.js"></script>
 </body>
 </html>
