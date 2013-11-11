@@ -3,7 +3,7 @@ require 'sinatra'
 require 'json'
 
 
-charts = {}
+charts = []
 
 
 def update_chart(chart)
@@ -25,9 +25,17 @@ get '/ember*' do
 end
 
 
-get '/chart/:id' do
+get '/charts' do
+  content_type 'application/json'
+  charts.to_json
+end
+
+
+get '/charts/:id' do
+  content_type 'application/json'
+
   # increment chart progress
-  id = params[:id]
+  id = params[:id].to_i
   chart = charts[id]
   if chart
     update_chart chart

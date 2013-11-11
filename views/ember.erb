@@ -2,40 +2,79 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Ember Starter Kit</title>
-  <link rel="stylesheet" href="/ember/css/normalize.css">
-  <link rel="stylesheet" href="/ember/css/style.css">
+<title>Ember: Pivotal Analytix Dieu</title>
+	<link rel="stylesheet" href="/ember/css/normalize.css">
+	<link rel="stylesheet" href="/ember/css/style.css">
+	<style type="text/css">
+		section {
+			border: thin solid #eeeeee;
+			margin: 0;
+			padding: 1em;
+		}
+		nav {
+			background-color: #eeeeee;
+			margin: 0;
+			padding: 1em;
+		}
+		nav a {
+			margin-right: 1em;
+		}
+	</style>
 </head>
 <body>
+	<script type="text/x-handlebars">
+		<h1>Welcome to Pivotal Analytix Dieu</h1>
+		<p><em>This time it's personal</em></p>
+		<nav>
+			{{#link-to "index"}}Home{{/link-to}}
+			{{#link-to "charts"}}Charts{{/link-to}}
+		</nav>
+		<section>
+			{{outlet}}
+		</section>
+	</script>
 
-  <script type="text/x-handlebars">
-    <h2>Welcome to Pivotal Analytix Dieu</h2>
-    <p><em>This time it's personal</em></p>
-    {{#link-to 'charts'}}Charts{{/link-to}}
-	{{outlet}}
-  </script>
+	<script type="text/x-handlebars" data-template-name="index">
+		<h2>Home</h2>
+		<p>Lorem ipsum!</p>
+	</script>
 
-  <script type="text/x-handlebars" data-template-name="charts">
-	  <h1>Charts</h1>
-	  <ul>
-	  {{#each item in model}}
-	    <li>{{#link-to 'chart' item}}Chart {{item.id}}{{/link-to}}</li>
-	  {{/each}}
-	  </ul>
-	  New Chart: {{input value=chartId}}
-	  <button {{action createChart chartId}}>Create Chart</button>
-  </script>
+	<script type="text/x-handlebars" data-template-name="charts">
+		<h2>Charts</h2>
+		<ul>
+		{{#each item in model}}
+			<li>{{#link-to 'chart' item}}{{item.name}}{{/link-to}}</li>
+		{{/each}}
+		</ul>
+		<p>{{chartsCount}} chart(s)</p>
+		<p>{{#link-to "charts.create"}}New Chart{{/link-to}}</p>
+		<div>{{outlet}}</div>
+	</script>
 
-  <script type="text/x-handlebars" data-template-name="chart">
-	  <h1>Chart {{model.id}}</h1>
-	  <p>Progress: {{model.progress}}</p>
-	  <p>Data: {{model.data}}</p>
-  </script>
+	<script type="text/x-handlebars" data-template-name="charts/create">
+		<p>
+			New Chart: {{input value=name}}
+			<button {{action save}}>Save</button>
+		</p>
+	</script>
 
-  <script src="/ember/js/libs/jquery-1.9.1.js"></script>
-  <script src="/ember/js/libs/handlebars-1.0.0.js"></script>
-  <script src="/ember/js/libs/ember-1.1.2.js"></script>
-  <script src="/ember/js/libs/ember-data-1.0.0-beta3.js"></script>
-  <script src="/ember/js/app.js"></script>
+	<script type="text/x-handlebars" data-template-name="chart">
+		<h1>{{model.name}}</h1>
+		<p>Progress: {{model.progress}}</p>
+		<p><button {{action "edit"}}>Edit</button></p>
+		<div>{{outlet}}</div>
+	</script>
+
+	<script type="text/x-handlebars" data-template-name="chart/edit">
+		<h1>Edit {{name}}</h1>
+		<p><label>Name</label> {{input value=name}}</p>
+		<p><button {{action "save"}}>Save</button></p>
+	</script>
+
+	<script src="/ember/js/libs/jquery-1.9.1.js"></script>
+	<script src="/ember/js/libs/handlebars-1.0.0.js"></script>
+	<script src="/ember/js/libs/ember-1.1.2.js"></script>
+	<script src="/ember/js/libs/ember-data-1.0.0-beta3.js"></script>
+	<script src="/ember/js/app.js"></script>
 </body>
 </html>
