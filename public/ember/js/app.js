@@ -10,7 +10,7 @@ App.Chart = DS.Model.extend({
 
 App.Chart.FIXTURES = [
 	{
-		id: 1,
+		id: '1',
 		name: 'My Chart',
 		progress: 1.0,
 	}
