@@ -2,3 +2,16 @@
 html, body {
     margin: 20px;
 }
+section {
+	border: thin solid #eeeeee;
+	margin: 0;
+	padding: 1em;
+}
+nav {
+	background-color: #eeeeee;
+	margin: 0;
+	padding: 1em;
+}
+nav a {
+	margin-right: 1em;
+}

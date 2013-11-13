@@ -5,21 +5,6 @@
 <title>Ember: Pivotal Analytix Dieu</title>
 	<link rel="stylesheet" href="/ember/css/normalize.css">
 	<link rel="stylesheet" href="/ember/css/style.css">
-	<style type="text/css">
-		section {
-			border: thin solid #eeeeee;
-			margin: 0;
-			padding: 1em;
-		}
-		nav {
-			background-color: #eeeeee;
-			margin: 0;
-			padding: 1em;
-		}
-		nav a {
-			margin-right: 1em;
-		}
-	</style>
 </head>
 <body>
 	<script type="text/x-handlebars">
@@ -44,6 +29,8 @@
 		<ul>
 		{{#each item in model}}
 			<li>({{item.id}}) {{#link-to 'chart' item}}{{item.name}}{{/link-to}}</li>
+		{{else}}
+			<li>(no charts)</li>
 		{{/each}}
 		</ul>
 		<p>{{chartsCount}} chart(s)</p>
@@ -63,7 +50,15 @@
 		<p>ID: {{model.id}}</p>
 		<p>Progress: {{model.progress}}</p>
 		<p><button {{action "edit"}}>Edit</button></p>
+		<p><button {{action "delete"}}>Delete</button></p>
 		<div>{{outlet}}</div>
+		{{#if deleteMode}}
+			<div class="confirm-box">
+				<h4>Really?</h4>
+				<button {{action "confirmDelete"}}>yes</button>
+				<button {{action "cancelDelete"}}>no</button>
+			</div>
+		{{/if}}
 	</script>
 
 	<script type="text/x-handlebars" data-template-name="chart/edit">

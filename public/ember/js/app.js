@@ -1,5 +1,5 @@
 App = Ember.Application.create();
-App.ApplicationAdapter = DS.FixtureAdapter;
+//App.ApplicationAdapter = DS.FixtureAdapter;
 
 
 App.Chart = DS.Model.extend({
@@ -52,6 +52,7 @@ App.ChartsCreateRoute = Ember.Route.extend({
 	}
 });
 
+
 App.ChartsCreateController = Ember.ObjectController.extend({
 	actions: {
 		save: function() {
@@ -74,6 +75,19 @@ App.ChartController = Ember.ObjectController.extend({
 	actions: {
 		edit: function() {
 			this.transitionToRoute('chart.edit');
+		},
+		delete: function() {
+			this.toggleProperty('deleteMode');
+		},
+		cancelDelete: function() {
+			this.set('deleteMode', false);
+		},
+		confirmDelete: function() {
+			var chart = this.get('model');
+			chart.deleteRecord();
+			chart.save();
+			this.transitionToRoute('charts');
+			this.set('deleteMode', false);
 		}
 	}
 });
