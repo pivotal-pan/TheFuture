@@ -4,17 +4,9 @@ App = Ember.Application.create();
 
 App.Chart = DS.Model.extend({
 	name: DS.attr(),
-	progress: DS.attr('number')
+	progress: DS.attr('number'),
+	data: DS.attr()
 });
-
-
-App.Chart.FIXTURES = [
-	{
-		id: '1',
-		name: 'My Chart',
-		progress: 1.0,
-	}
-];
 
 
 App.Router.map(function() {
@@ -73,6 +65,9 @@ App.ChartRoute = Ember.Route.extend({
 
 App.ChartController = Ember.ObjectController.extend({
 	actions: {
+		reload: function() {
+			this.get('model').reload();
+		},
 		edit: function() {
 			this.transitionToRoute('chart.edit');
 		},

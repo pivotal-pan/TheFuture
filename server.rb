@@ -2,12 +2,10 @@
 require 'sinatra'
 require 'json'
 
-
 next_chart_id = 1
 
-
 charts = {
-  '0' => {'id' => '0', 'name' => 'Default', 'progress' => 1.0, 'data' => []}
+  '0' => {'id' => '0', 'name' => 'Default', 'progress' => 1.0, 'data' => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
 }
 
 
@@ -40,13 +38,15 @@ end
 post '/charts' do
   content_type 'application/json'
 
+  default_chart = {'name' => 'Default', 'progress' => 0.0, 'data' => []}
   request.body.rewind
   record = JSON.parse request.body.read
-  chart = record['chart']
+  chart = default_chart.merge(record['chart'])
   id = next_chart_id.to_s
   chart['id'] = id
   next_chart_id += 1
   charts[id] = chart
+  record = {'chart' => chart}
   record.to_json
 end
 
@@ -59,12 +59,11 @@ get '/charts/:id' do
   chart = charts[id]
   if chart
     update_chart chart
+    record = {'chart' => chart}
+    record.to_json
   else
-    chart = { 'id' => id, 'name' => 'Chart ' + id, 'progress' => 0, 'data' => [] }
-    charts[id] = chart
+    404
   end
-  record = {'chart' => chart}
-  record.to_json
 end
 
 

@@ -49,6 +49,8 @@
 		<h1>{{model.name}}</h1>
 		<p>ID: {{model.id}}</p>
 		<p>Progress: {{model.progress}}</p>
+		<p>Data: {{model.data}}</p>
+		<p><button {{action "reload"}}>Reload</button></p>
 		<p><button {{action "edit"}}>Edit</button></p>
 		<p><button {{action "delete"}}>Delete</button></p>
 		<div>{{outlet}}</div>
