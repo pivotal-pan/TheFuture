@@ -25,7 +25,7 @@ get '/' do
 end
 
 
-get '/ember*' do
+get '/ember' do
   erb :ember
 end
 
@@ -39,20 +39,15 @@ end
 
 post '/charts' do
   content_type 'application/json'
-  
+
   request.body.rewind
   record = JSON.parse request.body.read
   chart = record['chart']
   id = next_chart_id.to_s
   chart['id'] = id
   next_chart_id += 1
-  
-  location = '/charts/' + id
-  [
-    201, 
-    {'Location' => location}, 
-    {'Location' => location}.to_json
-  ]
+  charts[id] = chart
+  record.to_json
 end
 
 
@@ -85,4 +80,13 @@ put '/charts/:id' do
   chart['data'] = []
   charts[id] = chart
   record.to_json
+end
+
+
+delete '/charts/:id' do
+  content_type 'application/json'
+
+  id = params[:id]
+  charts.delete id
+  200
 end

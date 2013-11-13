@@ -58,7 +58,7 @@ App.ChartsCreateController = Ember.ObjectController.extend({
 		save: function() {
 			var chart = this.store.createRecord('chart', this.get('model'));
 			chart.save();
-			this.transitionToRoute('chart', chart);
+			this.transitionToRoute('charts');
 		}
 	}
 });
