@@ -5,5 +5,7 @@ source "https://rubygems.org"
 gem "sinatra"
 
 group :development, :test do
+  gem "guard"
+  gem 'guard-shotgun', :git => 'https://github.com/rchampourlier/guard-shotgun.git'
   gem "jasmine"
 end
