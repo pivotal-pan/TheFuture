@@ -27,6 +27,11 @@ get '/ember' do
 end
 
 
+get '/backbone' do
+  erb :backbone
+end
+
+
 get '/charts' do
   content_type 'application/json'
   records = {'charts' => charts.values}
