@@ -46,10 +46,10 @@
 	</script>
 
 	<script type="text/x-handlebars" data-template-name="chart">
-		<h1>{{model.name}}</h1>
-		<p>ID: {{model.id}}</p>
-		<p>Progress: {{model.progress}}</p>
-		<p>Data: {{model.data}}</p>
+		<h1>{{name}}</h1>
+		<p>ID: {{id}}</p>
+		<p>Progress: {{progress}}</p>
+		<p>Data: {{data}}</p>
 		<p><button {{action "reload"}}>Reload</button></p>
 		<p><button {{action "edit"}}>Edit</button></p>
 		<p><button {{action "delete"}}>Delete</button></p>
@@ -63,6 +63,8 @@
 		{{/if}}
 	</script>
 
+    <script type="text/x-handlebars" data-template-name="chart/index"></script>
+
 	<script type="text/x-handlebars" data-template-name="chart/edit">
 		<h1>Edit {{name}}</h1>
 		<p>ID: {{id}}</p>
@@ -74,6 +76,7 @@
 	<script src="/ember/js/libs/handlebars-1.0.0.js"></script>
 	<script src="/ember/js/libs/ember-1.1.2.js"></script>
 	<script src="/ember/js/libs/ember-data-1.0.0-beta3.js"></script>
+	<script src="/ember/js/libs/highstock-1.3.6.js"></script>
 	<script src="/ember/js/app.js"></script>
 </body>
 </html>

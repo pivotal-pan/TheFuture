@@ -11,4 +11,4 @@ beforeEach(function() {
 
 afterEach(function() {
 	App.reset();
-})
+});
